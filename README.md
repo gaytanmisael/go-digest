@@ -8,6 +8,7 @@ A simple Go library that automates creating a Digest Auth Token.
 package main
 
 import (
+  "log"
   "github.com/gaytanmisael/go-digest"
 
   _ "github.com/joho/godotenv/autoload"
@@ -34,7 +35,7 @@ func main() {
 
 	resp, err := client.Do(req)
 	if err != nil {
-    log.Errorf("%s", err)
+    fmt.Println(err)
 	}
 }
 ```
