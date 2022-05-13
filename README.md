@@ -4,7 +4,7 @@
 A simple Go library that automates creating a Digest Auth Token.
 
 ## ⚡Quickstart
-```
+```go
 package main
 
 import (
