@@ -1,9 +1,11 @@
 # Go Digest
+
 **🗼Digest Auth Token Creator**
 
 A simple Go library that automates creating a Digest Auth Token.
 
 ## ⚡Quickstart
+
 ```go
 package main
 
@@ -20,14 +22,13 @@ const (
 )
 
 func main() {
-  host := "HOST URL GOES HERE"
-	path := "PATH"
-	endpoint := "ENDPOINT"
-	uri := path + endpoint
-	url := host + uri
+	url := "URL Goes Here"
 
-  authorization := digest.GenerateHeader(host, uri, "GET", user, pass)
+  authorization := digest.GenerateHeader(url, "GET", user, pass)
 	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
 	req.Header.Set("accept", "application/json")
 	req.Header.Set("authorization", authorization)
 	req.Header.Set("content-type", "application/json")
@@ -37,5 +38,7 @@ func main() {
 	if err != nil {
     fmt.Println(err)
 	}
+
+	// Logic to process data returned from API
 }
 ```

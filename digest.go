@@ -8,14 +8,24 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
 // Generates Header
-func GenerateHeader(host string, uri string, method string, user string, pass string) string {
-	url := host + uri
+func GenerateHeader(rawUrl string, method string, user string, pass string) string {
+	link, err := url.Parse(rawUrl)
+	if err != nil {
+		panic(err)
+	}
 
-	req, err := http.NewRequest(method, url, nil)
+	uri := "/" + link.Path + link.RawQuery
+
+	req, err := http.NewRequest(method, rawUrl, nil)
+	if err != nil {
+		panic(err)
+	}
+
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Connection", "keep-alive")
 	client := &http.Client{}
